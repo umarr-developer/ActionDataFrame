@@ -24,6 +24,12 @@ class AloneAct:
         data_ = all_data.filter(items=self.columns)
         return data_.query(f'{self.filter_column} in @branchs')
 
+    def get_count(self) -> int:
+        """
+        Возвращает кол-во строк
+        """
+        return len(self.data.index)
+
     def write_act(self, path: str):
         """
         Записывает файлы с даннымии в указанныую папку
