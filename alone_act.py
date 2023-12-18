@@ -40,7 +40,6 @@ class AloneAct:
         """
         format_act = AloneActFormat(self)
         format_act.write_to_excel(path)
-        # self.data.to_excel(f'{path}/{self.name}.xlsx', index=False, header=False)
 
 
 class AloneActFormat:
