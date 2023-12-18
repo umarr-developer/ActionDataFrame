@@ -7,15 +7,15 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 
 class AloneAct:
     name: str
-    branchs: list[str]
+    branches: list[str]
     filter_column: str
     columns: list[str]
     data: pandas.DataFrame
 
-    def __init__(self, name: str, branchs: list[str], filter_column: str, columns: list[str],
+    def __init__(self, name: str, branches: list[str], filter_column: str, columns: list[str],
                  all_data: pandas.DataFrame):
         self.name = name
-        self.branchs = branchs
+        self.branches = branches
         self.filter_column = filter_column
         self.columns = columns
         self.data = self.filter_act(all_data)
@@ -24,9 +24,9 @@ class AloneAct:
         """
         Фильтрует из общих данных нужные столбцы и поля
         """
-        branchs = self.branchs
+        branches = self.branches
         data_ = all_data.filter(items=self.columns)
-        return data_.query(f'{self.filter_column} in @branchs')
+        return data_.query(f'{self.filter_column} in @branches')
 
     def get_count(self) -> int:
         """
