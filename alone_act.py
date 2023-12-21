@@ -57,20 +57,25 @@ class AloneActFormat:
         self.workbook = openpyxl.load_workbook(f'{self.template_folder}/{self.template_name}')
         self.sheet = self.workbook[self.sheet_name]
 
-    def set_print_area(self, rows_count: int, signature: bool):
+    def set_print_area(self, rows_count: int, alt_index: int, signature: bool):
         index = self.start_pos + rows_count
         if signature:
             index += 10
         self.sheet.page_setup.paperSize = self.sheet.PAPERSIZE_A4
-        self.sheet.print_area = f'A1:F{index}'
+        self.sheet.print_area = f'A1:F{index + alt_index}'
 
     def set_values(self, rows_count: int, signature: bool):
+        alt_index = 0
+
         date = datetime.now()
         self.sheet['F3'] = f'{date.day}.{date.month}.{date.year}'
         self.sheet['A6'] = f'{self.sheet["A6"].value} {self.act.name}'
 
         if signature:
             index = self.start_pos + rows_count + 3
+            if index % 79 > 79 - 8:
+                index += 10
+                alt_index = 10
 
             self.sheet[f'B{index}'] = 'Передал сотрудник ОЭиПК:'
             self.sheet[f'B{index + 3}'] = 'Передал: '
@@ -83,8 +88,9 @@ class AloneActFormat:
             self.sheet[f'D{index + 4}'] = 'Нач ОО/зав с/к'
             self.sheet[f'D{index + 5}'] = '(ФИО и подпись)'
 
+        self.set_print_area(rows_count, alt_index, signature)
+
     def write_to_excel(self, path: str):
-        self.set_print_area(self.act.count, self.act.signature)
         self.set_values(self.act.count, self.act.signature)
 
         for index, row in enumerate(dataframe_to_rows(self.act.data, index=False, header=False), start=1):
