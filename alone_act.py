@@ -11,6 +11,7 @@ class AloneAct:
     filter_column: str
     columns: list[str]
     data: pandas.DataFrame
+    count: int
 
     def __init__(self, name: str, branches: list[str], filter_column: str, columns: list[str],
                  all_data: pandas.DataFrame):
@@ -19,6 +20,7 @@ class AloneAct:
         self.filter_column = filter_column
         self.columns = columns
         self.data = self.filter_act(all_data)
+        self.count = len(self.data)
 
     def filter_act(self, all_data: pandas.DataFrame):
         """
