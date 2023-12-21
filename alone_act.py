@@ -82,11 +82,11 @@ class AloneActFormat:
             self.sheet[f'B{index + 4}'] = 'Выездной сотрудник ОЛ '
             self.sheet[f'B{index + 5}'] = '(ФИО и подпись)'
 
-            self.sheet[f'D{index}'] = 'Принял Сотрудник ОЛ:'
-            self.sheet[f'D{index + 1}'] = '(ФИО и подпись)'
-            self.sheet[f'D{index + 3}'] = 'Принял: '
-            self.sheet[f'D{index + 4}'] = 'Нач ОО/зав с/к'
-            self.sheet[f'D{index + 5}'] = '(ФИО и подпись)'
+            self.sheet[f'E{index}'] = 'Принял Сотрудник ОЛ:'
+            self.sheet[f'E{index + 1}'] = '(ФИО и подпись)'
+            self.sheet[f'E{index + 3}'] = 'Принял: '
+            self.sheet[f'E{index + 4}'] = 'Нач ОО/зав с/к'
+            self.sheet[f'E{index + 5}'] = '(ФИО и подпись)'
 
         self.set_print_area(rows_count, alt_index, signature)
 
