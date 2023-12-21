@@ -59,8 +59,7 @@ class AloneActFormat:
 
     def set_print_area(self, rows_count: int, alt_index: int, signature: bool):
         index = self.start_pos + rows_count
-        if signature:
-            index += 10
+
         self.sheet.page_setup.paperSize = self.sheet.PAPERSIZE_A4
         self.sheet.print_area = f'A1:F{index + alt_index}'
 
@@ -73,9 +72,10 @@ class AloneActFormat:
 
         if signature:
             index = self.start_pos + rows_count + 3
+            alt_index += 10
             if index % 79 > 79 - 8:
                 index += 10
-                alt_index = 10
+                alt_index += 10
 
             self.sheet[f'B{index}'] = 'Передал сотрудник ОЭиПК:'
             self.sheet[f'B{index + 3}'] = 'Передал: '
