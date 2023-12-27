@@ -8,8 +8,10 @@ class Config:
     filename: str
     filter_column: str
     columns: list[str]
-    output: str
-    branches: dict
+    output0: str
+    branches0: dict
+    output1: str
+    branches1: dict
 
 
 def load_config(path: str, config_file: str) -> Config:
@@ -19,5 +21,7 @@ def load_config(path: str, config_file: str) -> Config:
         filename=data['filename'],
         filter_column=data['filter_column'],
         columns=data['columns'],
-        output=data['output'],
-        branches=data['branches'])
+        output0=data['output0'],
+        branches0=data['branches0'],
+        output1=data['output1'],
+        branches1=data['branches1'])
