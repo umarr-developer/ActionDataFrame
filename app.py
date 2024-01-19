@@ -11,7 +11,7 @@ def action(all_data: pandas.DataFrame, config: Config, branches: dict, output: s
     general_act = GeneralAct('_Общий акт')
     for branch in branches:
         print(f'>> {branch}')
-        
+
         act = AloneAct(name=branch,
                        branches=branches[branch],
                        filter_column=config.filter_column,
@@ -25,12 +25,12 @@ def action(all_data: pandas.DataFrame, config: Config, branches: dict, output: s
 
 def main():
     start = datetime.now()
-    
+
     config = load_config('config', 'config.yml')
     all_data = pandas.read_excel(config.filename)
     action(all_data, config, config.branches0, config.output0, signature=True)
     action(all_data, config, config.branches1, config.output1, signature=False)
-    
+
     print(datetime.now() - start)
 
 
