@@ -1,14 +1,15 @@
+from datetime import datetime
+
 import pandas
 
 from alone_act import AloneAct
 from config import Config, load_config
 from general_act import GeneralAct
-from datetime import datetime
+
 
 def action(all_data: pandas.DataFrame, config: Config, branches: dict, output: str, signature: bool):
     general_act = GeneralAct('_Общий акт')
     for branch in branches:
-        # DEBUG
         print(f'>> {branch}')
         
         act = AloneAct(name=branch,
@@ -23,7 +24,6 @@ def action(all_data: pandas.DataFrame, config: Config, branches: dict, output: s
 
 
 def main():
-    # DEBUG
     start = datetime.now()
     
     config = load_config('config', 'config.yml')
@@ -31,7 +31,6 @@ def main():
     action(all_data, config, config.branches0, config.output0, signature=True)
     action(all_data, config, config.branches1, config.output1, signature=False)
     
-    # DEBUG
     print(datetime.now() - start)
 
 
