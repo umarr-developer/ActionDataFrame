@@ -65,9 +65,6 @@ class AloneActFormat:
 
     def set_values(self, rows_count: int, signature: bool):
         alt_index = 0
-
-        date = datetime.now()
-        self.sheet['F3'] = f'{date.day}.{date.month}.{date.year}'
         self.sheet['A6'] = f'{self.sheet["A6"].value} {self.act.name}'
 
         if signature:
@@ -76,17 +73,6 @@ class AloneActFormat:
             if index % 79 > 79 - 8:
                 index += 10
                 alt_index += 10
-
-            self.sheet[f'B{index}'] = 'Передал сотрудник ОЭиПК:'
-            self.sheet[f'B{index + 3}'] = 'Передал: '
-            self.sheet[f'B{index + 4}'] = 'Выездной сотрудник ОЛ '
-            self.sheet[f'B{index + 5}'] = '(ФИО и подпись)'
-
-            self.sheet[f'E{index}'] = 'Принял Сотрудник ОЛ:'
-            self.sheet[f'E{index + 1}'] = '(ФИО и подпись)'
-            self.sheet[f'E{index + 3}'] = 'Принял: '
-            self.sheet[f'E{index + 4}'] = 'Нач ОО/зав с/к'
-            self.sheet[f'E{index + 5}'] = '(ФИО и подпись)'
 
         self.set_print_area(rows_count, alt_index, signature)
 

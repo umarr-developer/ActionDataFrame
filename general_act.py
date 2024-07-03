@@ -60,24 +60,6 @@ class GeneralActFormat:
         rows_count = len(self.act.acts)
         alt_index = 10
 
-        date = datetime.now()
-        self.sheet['C3'] = f'{date.day}.{date.month}.{date.year}'
-
-        index = self.start_pos + rows_count + 3
-
-        self.sheet[f'A{index}'] = 'Передал сотрудник ОЭиПК:'
-        self.sheet[f'A{index + 1}'] = 'Абдрахманова Г.М.'
-        self.sheet[f'A{index + 2}'] = 'Кайып уулу Э.'
-        self.sheet[f'A{index + 3}'] = 'Передал:'
-        self.sheet[f'A{index + 4}'] = 'Выездной сотрудник ОЛ'
-        self.sheet[f'A{index + 5}'] = '(ФИО и подпись)'
-
-        self.sheet[f'C{index}'] = 'Принял Сотрудник ОЛ:'
-        self.sheet[f'C{index + 1}'] = '(ФИО и подпись)'
-        self.sheet[f'C{index + 3}'] = 'Принял: '
-        self.sheet[f'C{index + 4}'] = 'Нач ОО/зав с/к'
-        self.sheet[f'C{index + 5}'] = '(ФИО и подпись)'
-
         self.set_print_area(rows_count, alt_index)
 
     def write_to_excel(self, path: str):
